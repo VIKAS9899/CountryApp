@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.vik.countryapp"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.appcompat:appcompat:${projectAppCompatVersion}"
+    implementation "androidx.recyclerview:recyclerview:${projectRecyclerViewAndroidXVersion}"
+    implementation "com.google.android.material:material:${projectMaterialVersion}"
+    implementation "com.github.bumptech.glide:glide:${projectGlideVersion}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${projectGlideVersion}"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation "androidx.core:core-ktx:1.2.0"
+
+    //Architecture components
+    implementation "androidx.lifecycle:lifecycle-extensions:${projectLifecycleAndroidXVersion}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${projectRetrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${projectRetrofitConverterGsonVersion}"
+
+    //Retrofit Co-Routine Adapter
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${projectRetrofitCoroutineAdapterVersion}"
+
+    // Ok HTTP Logging Version
+    implementation "com.squareup.okhttp3:logging-interceptor:${projectOkHttpVersion}"
+
+    //Co-Routines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${projectCoroutinesKotlinVersion}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${projectCoroutinesKotlinVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}"
+}
